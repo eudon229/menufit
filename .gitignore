@@ -1,0 +1,31 @@
+# Build output
+build/
+dist/
+*.o
+*.a
+*.so
+
+# Dependencies
+node_modules/
+venv/
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# SQLite
+*.db
+*.db-shm
+*.db-wal
+
+# App data
+data/
+logs/
