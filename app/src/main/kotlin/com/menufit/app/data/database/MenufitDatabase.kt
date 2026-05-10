@@ -4,8 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.menufit.app.data.database.dao.RecipeDao
 import com.menufit.app.data.database.dao.CollectionDao
+import com.menufit.app.data.database.dao.IngredientDao
+import com.menufit.app.data.database.dao.StepDao
+import com.menufit.app.data.database.dao.TechniqueDao
+import com.menufit.app.data.database.dao.RecipeTechniqueDao
 import com.menufit.app.data.database.entity.RecipeEntity
 import com.menufit.app.data.database.entity.IngredientEntity
 import com.menufit.app.data.database.entity.StepEntity
@@ -29,9 +34,14 @@ import com.menufit.app.data.database.entity.HistoryEntity
     version = 1,
     exportSchema = false
 )
+@TypeConverters(Converters::class)
 abstract class MenufitDatabase : RoomDatabase() {
     abstract fun recipeDao(): RecipeDao
     abstract fun collectionDao(): CollectionDao
+    abstract fun ingredientDao(): IngredientDao
+    abstract fun stepDao(): StepDao
+    abstract fun techniqueDao(): TechniqueDao
+    abstract fun recipeTechniqueDao(): RecipeTechniqueDao
 
     companion object {
         @Volatile
@@ -43,7 +53,9 @@ abstract class MenufitDatabase : RoomDatabase() {
                     context.applicationContext,
                     MenufitDatabase::class.java,
                     "menufit_database"
-                ).build()
+                )
+                    .addCallback(DatabaseCallback())
+                    .build()
                 INSTANCE = instance
                 instance
             }

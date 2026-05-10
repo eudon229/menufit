@@ -5,6 +5,10 @@ import androidx.room.Room
 import com.menufit.app.data.database.MenufitDatabase
 import com.menufit.app.data.database.dao.RecipeDao
 import com.menufit.app.data.database.dao.CollectionDao
+import com.menufit.app.data.database.dao.IngredientDao
+import com.menufit.app.data.database.dao.StepDao
+import com.menufit.app.data.database.dao.TechniqueDao
+import com.menufit.app.data.database.dao.RecipeTechniqueDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,7 +29,9 @@ object DatabaseModule {
             context,
             MenufitDatabase::class.java,
             "menufit_database"
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     @Singleton
@@ -38,5 +44,29 @@ object DatabaseModule {
     @Provides
     fun provideCollectionDao(database: MenufitDatabase): CollectionDao {
         return database.collectionDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideIngredientDao(database: MenufitDatabase): IngredientDao {
+        return database.ingredientDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideStepDao(database: MenufitDatabase): StepDao {
+        return database.stepDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideTechniqueDao(database: MenufitDatabase): TechniqueDao {
+        return database.techniqueDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideRecipeTechniqueDao(database: MenufitDatabase): RecipeTechniqueDao {
+        return database.recipeTechniqueDao()
     }
 }
