@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.menufit.app.ui.screen.HomeScreen
 import com.menufit.app.ui.screen.RecipeDetailScreen
+import com.menufit.app.ui.screen.CookingModeScreen
 import com.menufit.app.ui.theme.MenufitTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,6 +48,10 @@ fun MenufitApp() {
         composable("recipe_detail/{recipeId}") { backStackEntry ->
             val recipeId = backStackEntry.arguments?.getString("recipeId")?.toLongOrNull() ?: return@composable
             RecipeDetailScreen(recipeId, navController)
+        }
+        composable("cooking_mode/{recipeId}") { backStackEntry ->
+            val recipeId = backStackEntry.arguments?.getString("recipeId")?.toLongOrNull() ?: return@composable
+            CookingModeScreen(recipeId, navController)
         }
     }
 }

@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -34,7 +33,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.menufit.app.ui.viewmodel.RecipeDetailViewModel
@@ -84,6 +82,7 @@ fun RecipeDetailScreen(
     } else if (recipeDetail != null) {
         RecipeDetailContent(
             viewModel = viewModel,
+            recipeId = recipeId,
             navController = navController
         )
     } else {
@@ -99,6 +98,7 @@ fun RecipeDetailScreen(
 @Composable
 fun RecipeDetailContent(
     viewModel: RecipeDetailViewModel,
+    recipeId: Long,
     navController: NavController
 ) {
     val recipeDetail by viewModel.recipeDetail.collectAsState()
@@ -142,7 +142,7 @@ fun RecipeDetailContent(
         }
 
         Column(modifier = Modifier.padding(16.dp)) {
-            // Info récipe
+            // Info recette
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -241,9 +241,9 @@ fun RecipeDetailContent(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // CTA button
+            // CTA button - Go to cooking mode
             Button(
-                onClick = { /* TODO: Navigate to cooking mode */ },
+                onClick = { navController.navigate("cooking_mode/$recipeId") },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp),
@@ -412,6 +412,6 @@ fun ServingsButton(label: String, onClick: () -> Unit) {
             containerColor = MaterialTheme.colorScheme.primary
         )
     ) {
-        Text(label, color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+        Text(label, color = Color.White, fontWeight = FontWeight.Bold)
     }
 }
