@@ -1,31 +1,47 @@
-# Build output
+# Gradle files
+.gradle/
 build/
-dist/
-*.o
-*.a
-*.so
+*.apk
+*.ap_
+*.aab
 
-# Dependencies
-node_modules/
-venv/
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Generated files
+bin/
+gen/
+.idea/
+.gradle/
+build/
+.DS_Store
+
+# Android Studio
+.classpath
+.project
+.settings/
+*.iml
+.idea/
+out/
+
+# Compiled class file
+*.class
+
+# Log Files
+*.log
+
+# Keystore files
+*.jks
+*.keystore
+
+# env files
 .env
+.env.local
 
 # IDE
-.vscode/
-.idea/
 *.swp
 *.swo
 *~
 
-# OS
-.DS_Store
-Thumbs.db
-
-# SQLite
-*.db
-*.db-shm
-*.db-wal
-
-# App data
-data/
-logs/
+# Room
+.room.*

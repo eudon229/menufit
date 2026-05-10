@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Menufit</string>
+    <string name="home_title">Accueil</string>
+    <string name="explore_title">Explorer</string>
+    <string name="my_kitchen_title">Ma Cuisine</string>
+    <string name="settings_title">Paramètres</string>
+</resources>
